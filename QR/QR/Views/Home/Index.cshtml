@@ -1,0 +1,50 @@
+﻿@model User
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="~/js/home.js"></script>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form id="login" method="post" action="home/login">
+    @if (Model.currMode == 0)
+    {
+        <div class="text-center">
+            <div class="col-md-6 login-form-2">
+                <h3>Login</h3>
+                <div class="form-group">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Your username *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="password" id="pw" name="pw" class="form-control" placeholder="Your Password *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="btnLogin" class="btnSubmit" value="Login" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (Model.currMode == 1)
+    {
+        <div class="text-center">
+            <div class="col-md-6 login-form-2">
+                <h3>Current user</h3>
+                <div class="form-group">
+                    <label>@Model.id</label>
+                </div>
+                <div class="form-group">
+                    <label>@Model.username</label>
+                </div>
+                <div class="form-group">
+                    <label>@Model.lastcheckedin</label>
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+<form id="checkin" enctype="multipart/form-data" method="post" action="home/checkin">
+    <label for="file">Have QR code? Insert here:</label>
+    <input type="file" name="file" id="file" />
+    <input type="submit" id="btnCheckin" class="btnSubmit" value="Checkin" />
+</form>
